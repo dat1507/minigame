@@ -1,35 +1,115 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+
 export default function ProgressBar({ currentStep, correctAnswers, targetAnswers = 3 }) {
-  const progressPercentage = (correctAnswers / targetAnswers) * 100;
+  // Absolute position from 0 to 9. 
+  // If currentStep is 3, they won, pos is 9.
+  const absolutePos = Math.min(9, currentStep * 3 + correctAnswers);
+
+  // Map 0-8 to grid coordinates. 
+  // Grid is 3 columns (0, 1, 2), 3 rows (0, 1, 2).
+  // Row 0 (bottom): 0, 1, 2
+  // Row 1 (middle): 2, 1, 0 (snake pattern)
+  // Row 2 (top): 0, 1, 2
+  const getGridCoords = (pos) => {
+    if (pos >= 9) return { x: 2, y: 2 }; // Thắng, đứng ở đỉnh
+    const row = Math.floor(pos / 3);
+    const col = row % 2 === 0 ? (pos % 3) : (2 - (pos % 3));
+    return { x: col, y: row };
+  };
+
+  const avatarCoords = getGridCoords(absolutePos);
+
+  const blocks = [
+    { id: 0, label: 'Bắt đầu', isMilestone: false },
+    { id: 1, label: '', isMilestone: false },
+    { id: 2, label: 'Bậc 1', isMilestone: true },
+    { id: 3, label: '', isMilestone: false },
+    { id: 4, label: '', isMilestone: false },
+    { id: 5, label: 'Bậc 2', isMilestone: true },
+    { id: 6, label: '', isMilestone: false },
+    { id: 7, label: '', isMilestone: false },
+    { id: 8, label: 'Đích', isMilestone: true },
+  ];
 
   return (
-    <div className="w-full bg-white rounded-2xl p-4 shadow-card border-b-4 border-slate-200 flex items-center gap-4">
+    <div className="w-full bg-white/40 rounded-3xl p-4 md:p-6 shadow-card border-[3px] border-white/40 flex flex-col items-center">
+      <div className="flex justify-between w-full font-bold text-slate-500 text-xs sm:text-sm mb-4 px-2 uppercase tracking-wide">
+        <span>Bản Đồ Bậc Thang</span>
+        <span className="text-game-teal-dark">Cách mốc tiếp theo: {targetAnswers - correctAnswers} câu</span>
+      </div>
       
-      {/* Step Indicator */}
-      <div className="flex flex-col items-center justify-center bg-game-teal-light/20 text-game-teal-dark rounded-xl px-4 py-2 min-w-[70px]">
-        <span className="text-xs uppercase font-bold uppercase mb-0.5">Bậc</span>
-        <span className="text-3xl font-black leading-none drop-shadow-sm">{currentStep}</span>
-      </div>
+      {/* 2D Map Container */}
+      <div className="relative w-full max-w-[320px] h-[240px] mx-auto select-none">
+        
+        {/* Ladders */}
+        {/* Ladder 1: Row 0 to Row 1 (Right side) */}
+        <div 
+          className="absolute pixel-ladder w-6 z-0"
+          style={{ bottom: '15%', left: '87.5%', height: '35%', transform: 'translateX(-50%)' }}
+        ></div>
+        
+        {/* Ladder 2: Row 1 to Row 2 (Left side) */}
+        <div 
+          className="absolute pixel-ladder w-6 z-0"
+          style={{ bottom: '50%', left: '17.5%', height: '35%', transform: 'translateX(-50%)' }}
+        ></div>
 
-      {/* Progress Bar */}
-      <div className="flex-1">
-        <div className="flex justify-between items-center mb-1">
-          <span className="text-sm font-bold text-slate-500 uppercase">Tiến trình</span>
-          <span className="text-sm font-black text-game-yellow-dark">{correctAnswers}/{targetAnswers}</span>
-        </div>
-        <div className="w-full bg-slate-100 rounded-full h-4 overflow-hidden shadow-inner relative">
-          {/* Track background */}
-          <div className="absolute inset-0 bg-slate-200/50"></div>
-          {/* Fill */}
-          <div
-            className="bg-game-yellow h-full rounded-full transition-all duration-500 ease-out relative z-10"
-            style={{ width: `${progressPercentage}%` }}
+        {/* Blocks */}
+        {blocks.map((b) => {
+          const { x, y } = getGridCoords(b.id);
+          const isActive = absolutePos >= b.id;
+          const isCurrent = absolutePos === b.id;
+          
+          let bgClass = "bg-slate-300"; 
+          if (isActive) {
+            bgClass = b.isMilestone ? "bg-game-yellow pixel-glow" : "bg-game-teal-light";
+          }
+          
+          return (
+            <div 
+              key={b.id}
+              className={`absolute w-[25%] h-12 rounded flex items-center justify-center pixel-block ${bgClass}`}
+              style={{ 
+                left: `${x * 35 + 5}%`, 
+                bottom: `${y * 35}%`,
+                zIndex: isCurrent ? 10 : 5
+              }}
+            >
+              {b.label && (
+                <span className={`text-[11px] sm:text-xs font-black uppercase ${isActive ? 'text-slate-800' : 'text-slate-500 text-stroke'}`}>
+                  {b.label}
+                </span>
+              )}
+            </div>
+          );
+        })}
+
+        {/* Player Avatar */}
+        <motion.div
+           className="absolute text-5xl z-20 pointer-events-none drop-shadow-md"
+           initial={false}
+           animate={{
+             left: `calc(${avatarCoords.x * 35 + 17.5}% - 24px)`,
+             bottom: `calc(${avatarCoords.y * 35}% + 35px)`
+           }}
+           transition={{ type: "spring", stiffness: 100, damping: 15 }}
+        >
+          <motion.div
+            animate={{ 
+              y: [0, -6, 0], 
+              scaleX: avatarCoords.y % 2 === 0 ? -1 : 1 
+            }}
+            transition={{ 
+              y: { repeat: Infinity, duration: 0.8, ease: "easeInOut" },
+              scaleX: { duration: 0.3 }
+            }}
           >
-            {/* Shimmer effect inside progress bar */}
-            <div className="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-b from-white/30 to-transparent"></div>
-          </div>
-        </div>
-      </div>
+            🚶‍♂️
+          </motion.div>
+        </motion.div>
 
+      </div>
     </div>
   );
 }

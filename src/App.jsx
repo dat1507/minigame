@@ -11,7 +11,10 @@ const initialState = {
   lives: 3,
   inventory: [],
   currentQuestionIndex: 0,
+  usedQuestions: [],
+  highestStep: 0,
   isGameOver: false,
+  isGameWon: false,
   showRewardPopup: false,
   currentReward: null,
   isInventoryOpen: false,
@@ -32,6 +35,7 @@ function gameReducer(state, action) {
       let nextCorrectAnswers = nextCorrect;
       let showReward = false;
       let currentReward = null;
+      let isGameWon = state.isGameWon;
 
       if (nextCorrect === 3) {
         nextStep += 1;
@@ -39,13 +43,20 @@ function gameReducer(state, action) {
         showReward = true;
         currentReward = action.payload.reward;
       }
+      
+      if (nextStep >= 3) {
+        isGameWon = true; 
+      }
 
       return {
         ...state,
         currentStep: nextStep,
+        highestStep: Math.max(state.highestStep || 0, nextStep),
         correctAnswers: nextCorrectAnswers,
         showRewardPopup: showReward,
         currentReward: currentReward,
+        isGameWon: isGameWon,
+        usedQuestions: [...state.usedQuestions, state.currentQuestionIndex],
       };
     }
     case ACTION_ANSWER_WRONG: {
@@ -56,6 +67,7 @@ function gameReducer(state, action) {
         correctAnswers: 0,
         currentStep: Math.max(0, state.currentStep - 1),
         isGameOver: newLives === 0,
+        usedQuestions: [...state.usedQuestions, state.currentQuestionIndex],
       };
     }
     case ACTION_CLOSE_REWARD: {
@@ -64,13 +76,18 @@ function gameReducer(state, action) {
         showRewardPopup: false,
         inventory: [...state.inventory, state.currentReward],
         currentReward: null,
+        isGameOver: state.isGameWon ? true : state.isGameOver,
       };
     }
     case ACTION_TOGGLE_INVENTORY: {
       return { ...state, isInventoryOpen: action.payload };
     }
     case ACTION_RESTART: {
-      return { ...initialState, currentQuestionIndex: Math.floor(Math.random() * questions.length) };
+      return { 
+        ...initialState, 
+        currentQuestionIndex: Math.floor(Math.random() * questions.length),
+        usedQuestions: []
+      };
     }
     case ACTION_NEXT_QUESTION: {
       return { ...state, currentQuestionIndex: action.payload };
@@ -97,7 +114,20 @@ export default function App() {
       dispatch({ type: ACTION_ANSWER_WRONG });
     }
 
-    const nextQIndex = Math.floor(Math.random() * questions.length);
+    let availableQuestions = [];
+    for (let i = 0; i < questions.length; i++) {
+      if (!state.usedQuestions.includes(i) && i !== state.currentQuestionIndex) {
+        availableQuestions.push(i);
+      }
+    }
+    
+    // Fallback if all questions are used up somehow
+    if (availableQuestions.length === 0) {
+      availableQuestions = questions.map((_, index) => index).filter(i => i !== state.currentQuestionIndex);
+    }
+    
+    const nextQIndex = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
+
     dispatch({ type: ACTION_NEXT_QUESTION, payload: nextQIndex });
   };
 
@@ -148,8 +178,13 @@ export default function App() {
         <RewardPopup reward={state.currentReward} onClose={handleCloseReward} />
       )}
 
-      {state.isGameOver && (
-        <GameOverScreen onRestart={handleRestart} currentStep={state.currentStep} />
+      {state.isGameOver && !state.showRewardPopup && (
+        <GameOverScreen 
+          onRestart={handleRestart} 
+          highestStep={state.highestStep} 
+          isGameWon={state.isGameWon}
+          inventory={state.inventory}
+        />
       )}
 
       <InventoryModal 

@@ -45,3 +45,42 @@
   -webkit-text-stroke: 1.5px white;
   color: #1EB5B0;
 }
+
+/* Retro Pixel Map Aesthetics */
+.pixel-block {
+  border: 3px solid #1e293b;
+  box-shadow: 3px 3px 0 #1e293b, inset -3px -3px 0 rgba(0,0,0,0.15), inset 3px 3px 0 rgba(255,255,255,0.4);
+  image-rendering: pixelated;
+  transition: all 0.3s;
+}
+
+.pixel-glow {
+  animation: pixelPulse 1.5s infinite alternate;
+}
+
+@keyframes pixelPulse {
+  0% { box-shadow: 0 0 5px rgba(255, 193, 7, 0.5), 3px 3px 0 #1e293b, inset -3px -3px 0 rgba(0,0,0,0.15), inset 3px 3px 0 rgba(255,255,255,0.4); }
+  100% { box-shadow: 0 0 20px rgba(255, 193, 7, 1), 3px 3px 0 #1e293b, inset -3px -3px 0 rgba(0,0,0,0.15), inset 3px 3px 0 rgba(255,255,255,0.4); }
+}
+
+.pixel-ladder {
+  background: repeating-linear-gradient(
+    to bottom,
+    #1e293b,
+    #1e293b 4px,
+    transparent 4px,
+    transparent 12px
+  );
+  border-left: 3px solid #1e293b;
+  border-right: 3px solid #1e293b;
+}
+
+.avatar-bounce {
+  animation: avatarHop 0.5s ease-out;
+}
+
+@keyframes avatarHop {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
