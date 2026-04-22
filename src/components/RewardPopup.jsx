@@ -37,7 +37,7 @@ export default function RewardPopup({ reward, onClose }) {
           onClick={onClose}
           className="btn-yellow w-full py-4 px-6 rounded-2xl text-lg relative z-10"
         >
-          Cất Vào Túi Đồ
+          Cất Vào Ví Voucher
         </button>
       </motion.div>
     </div>

@@ -44,7 +44,7 @@ export default function GameOverScreen({ onRestart, highestStep, isGameWon, inve
           {/* Inventory Summary */}
           <div className="w-full text-left mt-1">
             <p className="text-slate-400 font-bold uppercase text-[10px] md:text-xs mb-2 tracking-wider">
-              Túi đồ thu thập ({inventory.length})
+              Ví voucher thu thập ({inventory.length})
             </p>
             {inventory.length > 0 ? (
               <div className="grid grid-cols-2 gap-2 max-h-[120px] overflow-y-auto pr-1">

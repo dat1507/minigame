@@ -17,7 +17,7 @@ export default function InventoryModal({ isOpen, onClose, inventory }) {
             <div className="flex items-center justify-between p-5 md:p-6 bg-game-teal text-white shadow-sm relative z-10">
               <div className="flex items-center gap-3 text-2xl font-black tracking-wide drop-shadow-sm">
                 <Gift className="w-7 h-7 text-game-yellow" strokeWidth={3} />
-                <span>TÚI ĐỒ CỦA BẠN</span>
+                <span>VÍ VOUCHER CỦA BẠN</span>
               </div>
               <button 
                 onClick={onClose}
@@ -34,7 +34,7 @@ export default function InventoryModal({ isOpen, onClose, inventory }) {
                   <div className="w-24 h-24 bg-slate-200 rounded-full flex items-center justify-center mb-4">
                     <Gift className="w-12 h-12 text-slate-300" />
                   </div>
-                  <p className="text-xl font-bold text-slate-500 mb-1">Túi đồ rỗng!</p>
+                  <p className="text-xl font-bold text-slate-500 mb-1">Ví voucher rỗng!</p>
                   <p className="font-medium text-center">Hãy leo lên các bậc thang để<br/>nhận thật nhiều quà nhé!</p>
                 </div>
               ) : (

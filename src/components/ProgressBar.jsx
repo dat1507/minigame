@@ -35,10 +35,6 @@ export default function ProgressBar({ currentStep, correctAnswers, targetAnswers
 
   return (
     <div className="w-full bg-white/40 rounded-3xl p-4 md:p-6 shadow-card border-[3px] border-white/40 flex flex-col items-center">
-      <div className="flex justify-between w-full font-bold text-slate-500 text-xs sm:text-sm mb-4 px-2 uppercase tracking-wide">
-        <span>Bản Đồ Bậc Thang</span>
-        <span className="text-game-teal-dark">Cách mốc tiếp theo: {targetAnswers - correctAnswers} câu</span>
-      </div>
       
       {/* 2D Map Container */}
       <div className="relative w-full max-w-[320px] h-[240px] mx-auto select-none">

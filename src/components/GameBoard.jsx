@@ -17,14 +17,14 @@ export default function GameBoard({
       
       {/* Top HUD */}
       <div className="flex items-center justify-between bg-white rounded-2xl p-3 md:p-4 shadow-card border-b-4 border-slate-200">
-        <LivesDisplay lives={lives} maxLives={3} />
+        <LivesDisplay lives={lives} maxLives={1} />
         
         <button 
           onClick={onOpenInventory}
           className="btn-yellow px-4 py-2 rounded-xl text-sm md:text-base flex items-center gap-2 font-bold"
         >
           <Gift className="w-5 h-5" />
-          <span className="hidden sm:inline">Túi Đồ</span>
+          <span className="hidden sm:inline">Ví Voucher</span>
         </button>
       </div>
 

@@ -8,7 +8,7 @@ import { questions, rewards } from './data/questions';
 const initialState = {
   currentStep: 0,
   correctAnswers: 0,
-  lives: 3,
+  lives: 1,
   inventory: [],
   currentQuestionIndex: 0,
   usedQuestions: [],
@@ -151,17 +151,41 @@ export default function App() {
 
       <div className="w-full max-w-3xl mx-auto z-10 flex flex-col flex-1">
         {/* Header Title */}
-        <div className="text-center mb-8 relative">
-          {/* Game controller emoji - header icon */}
-          <div className="inline-block text-5xl mb-3 animate-bounce" style={{ animationDuration: '2s' }}>
-            🕹️
+        <div className="text-center mb-10 md:mb-12 relative mt-2">
+          {/* Intense Background Glow to highlight the title */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] md:w-[90%] h-[160%] bg-gradient-to-r from-white/0 via-white/80 to-white/0 blur-[35px] pointer-events-none z-0 rounded-full animate-pulse" style={{ animationDuration: '3s' }}></div>
+          
+          <div className="relative z-10 flex flex-col items-center">
+            {/* Playful Floating Icon */}
+            <div className="inline-block text-5xl md:text-6xl mb-2 animate-bounce drop-shadow-lg" style={{ animationDuration: '1.5s' }}>
+              🌟
+            </div>
+            
+            <h1 className="flex flex-col items-center justify-center font-black uppercase w-full">
+              {/* MỞ VỊ - Yellow with white stroke */}
+              <span className="text-[3.5rem] md:text-[5rem] leading-none text-game-yellow tracking-widest transform -rotate-2 mb-1 md:mb-2 z-20"
+                    style={{
+                      WebkitTextStroke: '2px white',
+                      textShadow: '0 6px 12px rgba(0,0,0,0.15), 0 0 20px rgba(255,255,255,0.6)'
+                    }}>
+                MỞ VỊ
+              </span>
+              
+              {/* XANH NGON - Teal with thick white stroke & deep glow */}
+              <div className="relative z-30 mt-1 md:mt-2">
+                <span className="absolute inset-0 text-[4rem] md:text-[6.5rem] leading-[0.9] tracking-tighter text-game-teal-dark blur-[15px] opacity-70">
+                  XANH NGON
+                </span>
+                <span className="relative text-[4rem] md:text-[6.5rem] leading-[0.9] tracking-tighter text-[#1EB5B0] transform rotate-1 inline-block" 
+                      style={{
+                        WebkitTextStroke: '3px white',
+                        textShadow: '0 10px 20px rgba(0,0,0,0.2), 0 0 10px rgba(255,255,255,0.9)'
+                      }}>
+                  XANH NGON
+                </span>
+              </div>
+            </h1>
           </div>
-          <h1 className="text-5xl md:text-6xl font-black text-game-yellow drop-shadow-title text-stroke uppercase tracking-wide">
-            Bậc Thang
-          </h1>
-          <h2 className="text-3xl md:text-4xl font-bold text-white drop-shadow-title uppercase tracking-wider mt-1">
-            Câu Hỏi
-          </h2>
         </div>
 
         {/* Main Game Interface */}
