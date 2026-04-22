@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import heroImg from '../assets/character.png';
 
 export default function ProgressBar({ currentStep, correctAnswers, targetAnswers = 3 }) {
   // Absolute position from 0 to 9. 
@@ -90,7 +91,7 @@ export default function ProgressBar({ currentStep, correctAnswers, targetAnswers
            className="absolute text-5xl z-20 pointer-events-none drop-shadow-md"
            initial={false}
            animate={{
-             left: `calc(${avatarCoords.x * 35 + 17.5}% - 24px)`,
+             left: `calc(${avatarCoords.x * 35 + 17.5}% - 32px)`,
              bottom: `calc(${avatarCoords.y * 35}% + 35px)`
            }}
            transition={{ type: "spring", stiffness: 100, damping: 15 }}
@@ -105,7 +106,12 @@ export default function ProgressBar({ currentStep, correctAnswers, targetAnswers
               scaleX: { duration: 0.3 }
             }}
           >
-            🚶‍♂️
+            <img 
+              src={heroImg} 
+              alt="Player" 
+              className="w-16 h-16 object-contain drop-shadow-md scale-125 origin-bottom" 
+              style={{ imageRendering: 'pixelated' }}
+            />
           </motion.div>
         </motion.div>
 

@@ -6,8 +6,13 @@
 
 @layer base {
   body {
-    @apply font-sans text-slate-800 antialiased bg-gradient-to-b from-[#6EE7B7] to-[#1EB5B0] min-h-screen;
+    @apply font-sans text-slate-800 antialiased min-h-screen;
     margin: 0;
+    background-image: url('/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 }
 

@@ -1,127 +1,82 @@
 export const questions = [
   {
-    id: 1,
-    question: "Thủ đô của Việt Nam là gì?",
-    options: ["Hồ Chí Minh", "Hà Nội", "Đà Nẵng", "Huế"],
-    correctAnswer: "Hà Nội"
+    "id": 1,
+    "question": "Ăn Mì Quảng chuẩn bài là phải có cái bánh chi bẻ nhỏ bỏ vô bát cho kêu rộp rộp?",
+    "options": ["Bánh phồng tôm", "Bánh tráng nướng (Bánh đa)", "Bánh mì", "Bánh quy"],
+    "correctAnswer": "Bánh tráng nướng (Bánh đa)"
   },
   {
-    id: 2,
-    question: "Ngôn ngữ lập trình nào phổ biến nhất cho phát triển web frontend?",
-    options: ["Python", "C++", "JavaScript", "Java"],
-    correctAnswer: "JavaScript"
+    "id": 2,
+    "question": "Ở Đà Nẵng, 'Bánh tráng cuốn thịt heo' có phiên bản 'nhanh gọn lẹ' không cần cuốn mà vẫn nổi rần rần là món chi?",
+    "options": ["Bún mắm nêm", "Bún thịt nướng.", "Bánh ướt.", "Không biết tới."],
+    "correctAnswer": "Bún mắm nêm"
   },
   {
-    id: 3,
-    question: "React được phát triển bởi công ty nào?",
-    options: ["Google", "Facebook (Meta)", "Microsoft", "Apple"],
-    correctAnswer: "Facebook (Meta)"
+    "id": 3,
+    "question": "Món chi dưới đây hễ nhắc tên là dân tình nghĩ ngay tới địa danh Nam Ô?",
+    "options": ["Gỏi cá", "Bánh căn", "Cơm hến", "Nem lụi"],
+    "correctAnswer": "Gỏi cá"
   },
   {
-    id: 4,
-    question: "Số Pi xấp xỉ bằng bao nhiêu?",
-    options: ["3.12", "3.14", "3.16", "3.18"],
-    correctAnswer: "3.14"
+    "id": 4,
+    "question": "Đố mi 'Cầu Rồng' phun lửa phun nước vô lúc mấy giờ?",
+    "options": [
+      "12h đêm ngày mô cũng phun.",
+      "21h tối thứ 7, Chủ nhật với mấy ngày lễ.",
+      "Hễ có khách du lịch đứng đông là hắn phun.",
+      "19h tối ngày mô cũng phun."
+    ],
+    "correctAnswer": "21h tối thứ 7, Chủ nhật với mấy ngày lễ."
   },
   {
-    id: 5,
-    question: "Đâu không phải là một framework/thư viện của JavaScript?",
-    options: ["Vue", "Angular", "React", "Django"],
-    correctAnswer: "Django"
+    "id": 5,
+    "question": "Răng người ta gọi là 'Sông Hàn' mà không gọi là sông Đà Nẵng cho rồi?",
+    "options": [
+      "Vì nước sông lạnh thấu xương như bên Hàn Quốc.",
+      "Vì ngày xưa dân mình hàn xích sắt khóa cửa sông chặn tàu giặc.",
+      "Vì con sông ni do mấy ông Hàn Quốc sang xây.",
+      "Vì tên của một ông quan to ngày xưa."
+    ],
+    "correctAnswer": "Vì ngày xưa dân mình hàn xích sắt khóa cửa sông chặn tàu giặc."
   },
   {
-    id: 6,
-    question: "Một năm nhuận có bao nhiêu ngày?",
-    options: ["364", "365", "366", "367"],
-    correctAnswer: "366"
+    "id": 6,
+    "question": "Mở bản đồ ra coi, 'Bán đảo Sơn Trà' nhìn giống cái hình chi đang vươn ra biển?",
+    "options": ["Con rùa", "Cây nấm", "Con rồng", "Bông sen"],
+    "correctAnswer": "Cây nấm"
   },
   {
-    id: 7,
-    question: "Hành tinh nào gần Mặt Trời nhất?",
-    options: ["Sao Kim", "Sao Mộc", "Sao Hỏa", "Sao Thủy"],
-    correctAnswer: "Sao Thủy"
+    "id": 7,
+    "question": "Nghe ai đó quở: “Mi làm ri khang rứa”, từ “khang” ở đây là đang nói cái chi?",
+    "options": [
+      "Làm chi mà lẹ rứa",
+      "Làm chi mà lâu rứa",
+      "Làm chi mà cứ lặp đi lặp lại hoài rứa/làm mãi rứa",
+      "Làm không xong"
+    ],
+    "correctAnswer": "Làm chi mà cứ lặp đi lặp lại hoài rứa/làm mãi rứa"
   },
   {
-    id: 8,
-    question: "Đại dương lớn nhất trên Trái Đất là?",
-    options: ["Thái Bình Dương", "Đại Tây Dương", "Ấn Độ Dương", "Bắc Băng Dương"],
-    correctAnswer: "Thái Bình Dương"
+    "id": 8,
+    "question": "Câu mô dưới đây hiểu đúng nhất cái cụm “mệt tỉ lắm”?",
+    "options": ["Hơi mệt thôi", "Mệt chị lắm nhe", "Mệt cực kỳ/mệt dã man", "Chị đang mệt lắm nè"],
+    "correctAnswer": "Mệt cực kỳ/mệt dã man"
   },
   {
-    id: 9,
-    question: "Ai là người sáng lập ra Microsoft?",
-    options: ["Steve Jobs", "Elon Musk", "Bill Gates", "Mark Zuckerberg"],
-    correctAnswer: "Bill Gates"
-  },
-  {
-    id: 10,
-    question: "Khí nào chiếm tỷ lệ lớn nhất trong khí quyển Trái Đất?",
-    options: ["Oxy", "Nitơ", "Carbon Dioxide", "Hydro"],
-    correctAnswer: "Nitơ"
-  },
-  {
-    id: 11,
-    question: "Bộ phận nào của máy tính được ví như bộ não?",
-    options: ["RAM", "Ổ cứng", "CPU", "Card màn hình"],
-    correctAnswer: "CPU"
-  },
-  {
-    id: 12,
-    question: "Nước nào có diện tích lớn nhất thế giới?",
-    options: ["Mỹ", "Trung Quốc", "Nga", "Canada"],
-    correctAnswer: "Nga"
-  },
-  {
-    id: 13,
-    question: "Tên gọi khác của sao băng là gì?",
-    options: ["Sao chổi", "Thiên thạch", "Tiểu hành tinh", "Sao chổi quay"],
-    correctAnswer: "Thiên thạch"
-  },
-  {
-    id: 14,
-    question: "Động vật nào có cổ dài nhất trên cạn?",
-    options: ["Lạc đà", "Đà điểu", "Hươu cao cổ", "Ngựa vằn"],
-    correctAnswer: "Hươu cao cổ"
-  },
-  {
-    id: 15,
-    question: "HTTP viết tắt của từ gì?",
-    options: ["HyperText Transfer Protocol", "HyperText Transmission Process", "Hyper Transfer Text Protocol", "High Text Transfer Protocol"],
-    correctAnswer: "HyperText Transfer Protocol"
-  },
-  {
-    id: 16,
-    question: "Nhiệt độ sôi của nước ở điều kiện tiêu chuẩn là bao nhiêu?",
-    options: ["90 độ C", "95 độ C", "100 độ C", "105 độ C"],
-    correctAnswer: "100 độ C"
-  },
-  {
-    id: 17,
-    question: "Có bao nhiêu màu trong cầu vồng?",
-    options: ["5", "6", "7", "8"],
-    correctAnswer: "7"
-  },
-  {
-    id: 18,
-    question: "Con người có bao nhiêu giác quan chính?",
-    options: ["4", "5", "6", "7"],
-    correctAnswer: "5"
-  },
-  {
-    id: 19,
-    question: "Logo của hãng Apple là hình quả gì?",
-    options: ["Quả Táo", "Quả Lê", "Quả Cam", "Quả Dưa Hấu"],
-    correctAnswer: "Quả Táo"
+    "id": 9,
+    "question": "Câu “Răng mi đặt đồ Xanh Ngon khang rứa mi?” dịch ra tiếng phổ thông nghĩa là chi?",
+    "options": [
+      "Sao mày đặt đồ Xanh Ngon hoài vậy?",
+      "Sao bữa ni mày đặt đồ Xanh Ngon rứa?",
+      "Sao mày đặt đồ Xanh Ngon rứa?",
+      "Sao mày ưa đồ Xanh Ngon rứa?"
+    ],
+    "correctAnswer": "Sao mày đặt đồ Xanh Ngon hoài vậy?"
   }
 ];
 
 export const rewards = [
-  { id: 1, name: "Voucher Giảm 10%", icon: "🎫" },
-  { id: 2, name: "Hộp Quà May Mắn", icon: "🎁" },
-  { id: 3, name: "Huy Hiệu Trí Tuệ", icon: "🥇" },
-  { id: 4, name: "Vé X2 Kinh Nghiệm", icon: "🎟️" },
-  { id: 5, name: "Voucher Giảm 20%", icon: "🎟️" },
-  { id: 6, name: "Sổ Tay Game Thủ", icon: "📓" },
-  { id: 7, name: "Thẻ Cào 50k", icon: "💳" },
-  { id: 8, name: "Áo Thun Độc Quyền", icon: "👕" },
+  { id: 1, name: "MÃ FREESHIP 100% CHO ĐƠN HÀNG TỪ 0đ", icon: "🎫" },
+  { id: 2, name: "MÃ GIẢM GIÁ 10% CHO ĐƠN HÀNG TỪ 35.000đ", icon: "🎟️" },
+  { id: 3, name: "MÃ GIẢM GIÁ 15% CHO ĐƠN TỪ 35.000đ", icon: "🥇" },
 ];

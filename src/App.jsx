@@ -108,8 +108,12 @@ export default function App() {
     const currentQ = questions[state.currentQuestionIndex];
     
     if (selectedAnswer === currentQ.correctAnswer) {
-      const randomReward = rewards[Math.floor(Math.random() * rewards.length)];
-      dispatch({ type: ACTION_ANSWER_CORRECT, payload: { reward: randomReward } });
+      let assignedReward = null;
+      if (state.correctAnswers === 2) {
+        const completedLevel = state.currentStep + 1;
+        assignedReward = rewards.find(r => r.id === completedLevel) || rewards[0];
+      }
+      dispatch({ type: ACTION_ANSWER_CORRECT, payload: { reward: assignedReward } });
     } else {
       dispatch({ type: ACTION_ANSWER_WRONG });
     }
