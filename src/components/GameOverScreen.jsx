@@ -22,7 +22,7 @@ export default function GameOverScreen({ onRestart, highestStep, isGameWon, inve
         </motion.div>
         
         <h2 className={`text-5xl font-black ${isGameWon ? 'text-game-teal' : 'text-game-danger'} mb-2 drop-shadow-sm uppercase tracking-wide`}>
-          {isGameWon ? "Tuyệt Vời!" : "Rất Tiếc!"}
+          {isGameWon ? "Tuyệt Vời!" : "Tiếc quá à!"}
         </h2>
         <p className="text-slate-500 font-bold text-lg mb-8">
           {isGameWon ? "Bạn đã thắng tuyệt đối 3 bậc!" : "Bạn đã hết số mạng cho phép."}

@@ -1,4 +1,5 @@
-import { useState, useReducer, useEffect } from 'react';
+import { useState, useReducer, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import GameBoard from './components/GameBoard';
 import RewardPopup from './components/RewardPopup';
 import InventoryModal from './components/InventoryModal';
@@ -99,6 +100,8 @@ function gameReducer(state, action) {
 
 export default function App() {
   const [state, dispatch] = useReducer(gameReducer, initialState);
+  const [showCorrectPopup, setShowCorrectPopup] = useState(false);
+  const popupTimeoutRef = useRef(null);
 
   useEffect(() => {
     dispatch({ type: ACTION_NEXT_QUESTION, payload: Math.floor(Math.random() * questions.length) });
@@ -108,6 +111,10 @@ export default function App() {
     const currentQ = questions[state.currentQuestionIndex];
     
     if (selectedAnswer === currentQ.correctAnswer) {
+      setShowCorrectPopup(true);
+      if (popupTimeoutRef.current) clearTimeout(popupTimeoutRef.current);
+      popupTimeoutRef.current = setTimeout(() => setShowCorrectPopup(false), 1000);
+
       let assignedReward = null;
       if (state.correctAnswers === 2) {
         const completedLevel = state.currentStep + 1;
@@ -220,6 +227,29 @@ export default function App() {
         onClose={() => dispatch({ type: ACTION_TOGGLE_INVENTORY, payload: false })} 
         inventory={state.inventory} 
       />
+
+      {/* Correct Answer Popup */}
+      <AnimatePresence>
+        {showCorrectPopup && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1.2 }}
+            exit={{ opacity: 0, scale: 1.5 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 flex items-center justify-center z-[100] pointer-events-none"
+          >
+            <div 
+              className="text-5xl md:text-7xl font-black text-[#FFD700] drop-shadow-2xl text-center px-4"
+              style={{ 
+                WebkitTextStroke: '2px #ff6b6b', 
+                textShadow: '0 8px 16px rgba(0,0,0,0.4), 0 0 20px rgba(255, 215, 0, 0.8)' 
+              }}
+            >
+              Đúng rồi giỏi hỉ!
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
